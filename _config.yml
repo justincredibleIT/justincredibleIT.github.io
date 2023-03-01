@@ -16,16 +16,16 @@ minimal_mistakes_skin    : "air" # "default" # "air", "aqua", "contrast", "dark"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Dave's Technical Journal"
+title                    : "JustIncredible IT"
 title_separator          : "-"
-name                     : Dave Carroll
+name                     : Justin Vanway
 description              : Articles on PowerShell, general IT, and retro-computing
 url                      : https://thedavecarroll.com # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : / # the subpath of your site, e.g. "/blog"
 repository               : thedavecarroll/thedavecarroll.com # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 words_per_minute         : 200
-logo                     : /assets/images/thedavecarroll-avatar-transparent.png
+logo                     : /assets/images/linkedin.jpeg
 
 comments:
   provider: "giscus"
@@ -79,7 +79,7 @@ analytics:
     anonymize_ip         : false
 
 # Site Author
-author: Dave Carroll
+author: Justin Vanway
   # name             : Dave Carroll
   # avatar           : /assets/images/thedavecarroll-avatar.jpg
   # bio              : I'm a PowerShell developer and enthusiast with interests in DevOps, infrastructure, and retrocomputing.
