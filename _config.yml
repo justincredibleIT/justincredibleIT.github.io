@@ -88,6 +88,9 @@ author: Justin Vanway
   # uri              :
   # home             : # null (default), "absolute or relative url to link to author home"
   # links:
+  #    - label: "justincredibleITservices@gmail.com"
+  #    icon: "fas fa-fw fa-envelope-square"
+  #    url: "mailto:justincredibleITservices@gmail.com"
   #   - label: "GitHub"
   #     icon: "fab fa-fw fa-github"
   #     url: https://github.com/thedavecarroll

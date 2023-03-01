@@ -10,3 +10,6 @@ Justin Vanway:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: https://www.linkedin.com/in/justin-vanway-849ba971/
+    - label: "justincredibleITservices@gmail.com"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:justincredibleITservices@gmail.com"
