@@ -12,58 +12,36 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "air" # "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "JustinCredible IT"
+title                    : "Dave's Technical Journal"
 title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Justin Vanway"
-description              : "An amazing website."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name                     : Dave Carroll
+description              : Articles on PowerShell, general IT, and retro-computing
+url                      : https://thedavecarroll.com # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : / # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : thedavecarroll/thedavecarroll.com # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
+logo                     : /assets/images/thedavecarroll-avatar-transparent.png
+
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
-  disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
-  discourse:
-    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
-  facebook:
-    # https://developers.facebook.com/docs/plugins/comments
-    appid                :
-    num_posts            : # 5 (default)
-    colorscheme          : # "light" (default), "dark"
-  utterances:
-    theme                : # "github-light" (default), "github-dark"
-    issue_term           : # "pathname" (default)
+  provider: "giscus"
   giscus:
-    repo_id              : # Shown during giscus setup at https://giscus.app
-    category_name        : # Full text name of the category
-    category_id          : # Shown during giscus setup at https://giscus.app
-    discussion_term      : # "pathname" (default), "url", "title", "og:title"
-    reactions_enabled    : # '1' for enabled (default), '0' for disabled
-    theme                : # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
-  staticman:
-    branch               : # "master"
-    endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
-reCaptcha:
-  siteKey                :
-  secret                 :
+    repo_id              : "R_kgDOGcQm8w"
+    category_name        : "Site Comments"
+    category_id          : "DIC_kwDOGcQm884CRFma"
+    discussion_term      : "pathname"
+    reactions_enabled    : "1"
+    theme                : "preferred_color_scheme"
+
 atom_feed:
   path                   : # blank (default) uses feed.xml
-  hide                   : # true, false (default)
-search                   : # true, false (default)
+search                   : true # true, false (default)
 search_full_content      : # true, false (default)
 search_provider          : # lunr (default), algolia, google
-lunr:
-  search_within_pages    : # true, false (default)
 algolia:
   application_id         : # YOUR_APPLICATION_ID
   index_name             : # YOUR_INDEX_NAME
@@ -75,13 +53,12 @@ google:
 # SEO Related
 google_site_verification :
 bing_site_verification   :
-naver_site_verification  :
 yandex_site_verification :
-baidu_site_verification  :
+naver_site_verification  :
 
 # Social Sharing
 twitter:
-  username               :
+  username               : thedavecarroll
 facebook:
   username               :
   app_id                 :
@@ -96,66 +73,58 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : google-gtag
   google:
-    tracking_id          :
-    anonymize_ip         : # true, false (default)
-
+    tracking_id          : G-PM1EP6J9FE
+    anonymize_ip         : false
 
 # Site Author
-author:
-  name             : "Justin Vanway"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "A systems engineer with a passion for automation."
-  location         : "San Diego, CA"
-  email            :
-  links:
-    - label: "justincredibleITservices@gmail.com"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:justincredibleITservices@gmail.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+author: Dave Carroll
+  # name             : Dave Carroll
+  # avatar           : /assets/images/thedavecarroll-avatar.jpg
+  # bio              : I'm a PowerShell developer and enthusiast with interests in DevOps, infrastructure, and retrocomputing.
+  # location         : Nashville, TN
+  # email            :
+  # uri              :
+  # home             : # null (default), "absolute or relative url to link to author home"
+  # links:
+  #   - label: "GitHub"
+  #     icon: "fab fa-fw fa-github"
+  #     url: https://github.com/thedavecarroll
+  #   - label: "Mastodon"
+  #     icon: "fab fa-fw fa-mastodon"
+  #     url: "https://fosstodon.org/@thedavecarroll"
+  #   - label: "LinkedIn"
+  #     icon: "fab fa-fw fa-linkedin"
+  #     url: https://www.linkedin.com/in/thedavecarroll/
+  #   - label: "Twitter"
+  #     icon: "fab fa-fw fa-twitter-square"
+  #     url: https://twitter.com/thedavecarroll
+  #   - label: "YouTube"
+  #     icon: "fab fa-fw fa-youtube"
+  #     url: "https://youtube.com/@davecarroll"
+  #   - label: "Stack Overflow"
+  #     icon: "fab fa-fw fa-stack-overflow"
+  #     url: "https://stackoverflow.com/users/10085389/thedavecarroll"
 
 # Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url:
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url:
-    - label: "Bitbucket"
-      icon: "fab fa-fw fa-bitbucket"
-      # url:
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url:
-
+      url: https://github.com/thedavecarroll
+    - label: "Mastodon"
+      icon: "fab fa-fw fa-mastodon"
+      url: "https://fosstodon.org/@thedavecarroll"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: https://twitter.com/thedavecarroll
 
 # Reading Files
 include:
   - .htaccess
   - _pages
+  - ./well-known
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -183,6 +152,7 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  #- /drafts # ignore my drafts
 keep_files:
   - .git
   - .svn
@@ -220,7 +190,7 @@ sass:
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: US/Central # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins (previously gems:)
@@ -230,6 +200,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jemoji
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -238,6 +209,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jemoji
 
 
 # Archives
@@ -256,18 +228,6 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-# https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
-
 
 # HTML Compression
 # - https://jch.penibelst.de/
@@ -287,7 +247,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       #share: true
       #related: true
 
@@ -298,3 +258,17 @@ defaults:
     values:
       layout: single
       author_profile: true
+
+  # Module Help
+  - scope:
+      path: 'modulehelp/**'
+    values:
+      sitemap: false
+
+  # BluebirdPS Auth Testing
+  - scope:
+      path: 'response.html'
+    values:
+      sitemap: false
+
+github: [metadata]

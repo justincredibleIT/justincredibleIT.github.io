@@ -1,0 +1,125 @@
+name: Rename Draft Articles
+
+on:
+  # schedule:
+    # every 4 hours on the half hour
+    # - cron: '30 */4 * * *'
+    # every hour at 5 minutes past the hour
+    # - cron: '05 * * * *'
+  # on demand
+  workflow_dispatch:
+    inputs:
+      drafts_path:
+        description: 'Drafts folder. This folder will be scanned for possible draft articles.'
+        required: true
+        default: '_drafts'
+        type: string
+      posts_path:
+        description: 'Posts folder. The renamed article will be stored here.'
+        required: true
+        default: '_posts'
+        type: string
+      config_path:
+        description: 'Jekyll config.yml path. This is used to set the TimeZone if file exists and contains a yaml key timezone.'
+        required: true
+        default: '_config.yml'
+        type: string
+      allow_multiple_posts:
+        description: 'Allow multiple posts per day. If true, draft articles will be published chronologically, otherwise the last edited file will be published.'
+        type: boolean
+      preserve_date_filename:
+        description: 'Preserve an existing filename with date format. If true, the filename will be prepended with YYYY-MM-dd, otherwise the old date will be replaced before YYYY-MM-dd is prepended to the filename.'
+        type: boolean
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: PowerShell Module Cache
+      uses: potatoqualitee/psmodulecache@v4.5
+      with:
+        modules-to-cache: powershell-yaml
+
+    - name: Rename Draft Articles
+      id: rename_drafts
+      run: |
+        '::group::Parameters for Script'
+        Set-Location -Path $env:GITHUB_WORKSPACE
+        $Parameters = @{
+          DraftsPath = '${{ inputs.drafts_path }}'
+          PostsPath =  '${{ inputs.posts_path }}'
+          ConfigPath =  '${{ inputs.config_path }}'
+        }
+        if ([System.Convert]::ToBoolean('${{ inputs.allow_multiple_posts }}')) {
+          $Parameters.AllowMultiplePostsPerDay = $true
+        }
+        if ([System.Convert]::ToBoolean('${{ inputs.preserve_date_filename }}')) {
+          $Parameters.PreserveDateFileName = $true
+        }
+        $Parameters
+        ''
+        '::endgroup::'
+        ./script/Rename-DraftArticle.ps1 @Parameters
+
+    - name: Check for New Articles to Publish
+      id: check_new_article
+      run: |
+        if ([System.Convert]::ToBoolean('${{ steps.rename_drafts.outputs.articles_renamed }}')) {
+          'Found and renamed at least one draft article requiring the site to be published.'
+          '::set-output name=publish_articles::true'
+        } else {
+          'No articles matched the criteria to be renamed and published.'
+          '::set-output name=publish_articles::false'
+        }
+
+    - name: Import GPG
+      if: ${{ steps.check_new_article.outputs.publish_articles }} == true
+      uses: crazy-max/ghaction-import-gpg@v5.1.0
+      with:
+        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        git_user_signingkey: true
+        git_commit_gpgsign: true
+
+    - name: Configure Git
+      if: ${{ steps.check_new_article.outputs.publish_articles }} == true
+      run: |
+        git config user.name Dave Carroll
+        git config user.email 112159751+thedavecarroll-bot@users.noreply.github.com
+
+    - name: Commit New Articles to Feature Branch
+      if: ${{ steps.check_new_article.outputs.publish_articles }} == true
+      run: |
+        ''
+        # ${{ steps.rename_drafts.outputs.files_to_commit }}
+        '::group::Checkout New Branch'
+        git checkout -b draft-articles
+        '::endgroup::'
+        '::group::Stage New Articles'
+        # list untracked files, which will be files that have been renamed
+        $RenamedArticles = ${{ steps.rename_drafts.outputs.files_to_commit }}
+        git ls-files --others --exclude-standard | ForEach-Object {
+          if ($_ -match $RenamedArticles) {
+            'New file matches a renamed file.'
+            git add $_
+          } else {
+            '::warning::New file ''{0}'' does not match any renamed file.' -f $_
+          }
+        }
+        'The following files have been staged.'
+        git diff --staged --name-only
+        '::endgroup::'
+        '::group::Commit Staged Articles'
+        git commit -S -m 'Testing commit'
+        '::endgroup::'
+        '::group::Push to Repo'
+        # git push --set-upstream origin draft-articles
+        '::endgroup::'
